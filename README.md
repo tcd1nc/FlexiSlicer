@@ -8,3 +8,5 @@ Features:
 	Default option can be selected based on selecting index
 	
 	Horizontal or vertical orientation of option (radio) buttons.
+	
+	Sizing of radio button
