@@ -9,4 +9,4 @@ Features:
 	
 	Horizontal or vertical orientation of option (radio) buttons.
 	
-	Sizing of radio button.
+	Sizing of radio buttons.
