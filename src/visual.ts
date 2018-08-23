@@ -34,6 +34,7 @@ module powerbi.extensibility.visual {
         fontFamily: string;
         fontColor: string;
         backgroundColor: string;
+        radioBtnSize: number;
     };
 
     function visualTransform(options: VisualUpdateOptions, host: IVisualHost): FlexiSlicerViewModel {
@@ -45,7 +46,8 @@ module powerbi.extensibility.visual {
            fontSize: 12,
            fontFamily: "Arial",
            fontColor: "blue",
-           backgroundColor: "white"
+           backgroundColor: "white",
+           radioBtnSize: 12
         };
        
         if (!dataViews
@@ -69,6 +71,7 @@ module powerbi.extensibility.visual {
                     fontFamily: getValue<string>(dvobjs, 'labels', 'fontFamily', "Arial"),
                     fontColor: getFill(dataViews[0], 'labels', 'fontColor', "blue"),
                     backgroundColor: getFill(dataViews[0], 'labels', 'backgroundColor', "white"),
+                    radioBtnSize: getValue<number>(dvobjs, 'labels', 'btnSize', 12)
                 };
                 
             return style;
@@ -155,6 +158,10 @@ module powerbi.extensibility.visual {
                 radio.type = "radio";
                 radio.value = value;
                 radio.name = "values";
+                radio.id = itemctr.toString();
+
+                radio.style.height= viewmodel.radioBtnSize.toString()+"px";// viewmodel.fontSize.toString() + "px";
+                radio.style.width= viewmodel.radioBtnSize.toString()+"px";//viewmodel.fontSize.toString() + "px"; 
 
                 //set default checked item
                 if(itemctr == viewmodel.defaultId ){
@@ -177,8 +184,9 @@ module powerbi.extensibility.visual {
                 label.innerHTML += value;
                 label.style.fontFamily= viewmodel.fontFamily;
                 label.style.color = viewmodel.fontColor;
-                label.style.fontSize = viewmodel.fontSize.toString()+"px";
-
+                label.style.fontSize = viewmodel.fontSize.toString() + "px";
+                label.htmlFor=itemctr.toString();
+    
                 scroller.appendChild(radio);
                 scroller.appendChild(label);
 
@@ -187,7 +195,6 @@ module powerbi.extensibility.visual {
                 }
 
             });
-           
             this.target.appendChild(scroller);
         }
 
@@ -232,7 +239,16 @@ module powerbi.extensibility.visual {
                             backgroundColor: viewModel.backgroundColor,
                             fontSize: viewModel.fontSize,
                             fontFamily: viewModel.fontFamily,
-                            fontColor: viewModel.fontColor
+                            fontColor: viewModel.fontColor,
+                            btnSize: viewModel.radioBtnSize
+                        },
+                        validValues: {                            
+                            btnSize: {
+                                numberRange: {
+                                    min: 1,
+                                    max: 40
+                                }
+                            }
                         },
                         selector: null
                     });
