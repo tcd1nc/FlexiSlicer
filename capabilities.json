@@ -187,6 +187,13 @@
                             }
                         ]
                     }
+                },
+                "btnSize": {
+                    "type": {
+                        "integer": true                        
+                    },
+                    "displayName": "Button Size",
+                    "description": "Select button size"
                 }
             }
         }
