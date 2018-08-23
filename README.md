@@ -1,4 +1,4 @@
-# FlexiSlicer
+# PowerBI - FlexiSlicer
 PowerBI Slicer with radio buttons. 
 
 Features:
